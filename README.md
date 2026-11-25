@@ -15,7 +15,7 @@ Planificador de rutas por Taipéi para el 25 de noviembre y del 9 al 11 de dicie
 | Archivo | Qué es |
 | --- | --- |
 | `index.html` | La página: marcado, estilos de la página y toda la lógica en JavaScript |
-| `tokens.css` | Tokens de diseño (colores, tipografía, espaciado) del tema Bloom de Hallmark |
+| `tokens.css` | Tokens de diseño (colores, tipografía, espaciado) del tema «Neón claro» (colores vivos sobre base clara) |
 | `base.css` | Reglas base de Hallmark (foco, overflow, movimiento reducido) |
 
 ## Ejecutar en local
@@ -40,6 +40,6 @@ y visita `http://localhost:8000`. Abrir `index.html` directamente también funci
 
 - Los tiempos de trayecto son estimaciones por distancia en línea recta (×1,3): a pie por debajo de unos 900 m, y si no, MRT o taxi con 8 minutos de espera incluidos.
 - El mapa es un esquema aproximado, no un mapa a escala de calle.
-- Tipografías: Albert Sans y Castoro, desde Google Fonts (sustituyen a Ranade y Gambarino del tema Bloom original).
+- Tipografías: Bricolage Grotesque (títulos y cifras) y Albert Sans (texto), desde Google Fonts.
 - Para cambiar el plan inicial o el catálogo de sitios, edita `PLACES` e `initial()` en el `<script>` de `index.html`. Si cambias el plan inicial, sube también la constante `KEY` para que el navegador no cargue la versión guardada antigua.
 - Diseño hecho con la skill [Hallmark](https://github.com/nutlope/hallmark).

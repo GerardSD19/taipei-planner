@@ -7,11 +7,11 @@
 <meta name="description" content="Planificador de rutas por Taipéi: arrastra paradas, añade o quita sitios y mira cómo cambian los horarios de cada día.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Castoro&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap" rel="stylesheet">
 <style>
-/* Hallmark · shape: app screen · genre: atmospheric · theme: Bloom (by request)
+/* Hallmark · shape: app screen · genre: atmospheric · theme: Neón claro (vivid light, custom)
  * nav: top bar, the trip name and three actions · signature: the route drawn on a working grid over a schematic of the MRT and the two rivers, every stop a numbered disc with a placed label · states: empty day, marking on the map, all days, opening and closing warnings · bloom: daylight
- * axes: light/grotesk-sans/warm · posture: committed · contrast: pass · fonts: Albert Sans for Ranade, Castoro for Gambarino (Fontshare is blocked by the artifact host) · v2.0.0 */
+ * axes: light/grotesk-sans/vivid · posture: committed · contrast: pass · fonts: Bricolage Grotesque for display and figures, Albert Sans for body · v2.0.0 */
 /* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: S, a route list could be any planner; the map sits on the theme's working grid and the four days take the four lane tones */
 /* Hallmark · dismissed F4 · the top-bar actions are sheet pills on paper, none filled; the one primary is the rubber cap on Añadir al día */
 /* Hallmark · dismissed F7 · .tabs and .tab are a segmented control, .grip is the drag handle, .sw is a swatch dot beside a day name */
@@ -20,15 +20,12 @@
 @import url("./base.css");
 
 :root {
-  --font-display: "Albert Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-body: var(--font-display);
-  --font-outlier: "Castoro", Georgia, serif;
-  --color-water: oklch(89% 0.028 225);
-  --color-water-ink: oklch(45% 0.04 230);
-  --color-line: oklch(86% 0.012 64);
-  --shadow-label: oklch(21% 0.024 40 / 0.14);
-  --bloom-1: oklch(53% 0.145 36 / 0.08);
-  --bloom-2: oklch(66% 0.10 55 / 0.06);
+  --color-water: oklch(87% 0.075 222);
+  --color-water-ink: oklch(47% 0.13 232);
+  --color-line: oklch(89% 0.016 265);
+  --shadow-label: oklch(20% 0.045 275 / 0.14);
+  --bloom-1: oklch(59% 0.25 357 / 0.10);
+  --bloom-2: oklch(56% 0.23 262 / 0.10);
   --bar-h: 68px;
 }
 
@@ -143,6 +140,10 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 .toast { position: fixed; left: 50%; bottom: var(--space-lg); transform: translateX(-50%); z-index: var(--z-toast); background: var(--umber); color: var(--color-accent-ink); border-radius: var(--radius-pill); padding: var(--space-sm) var(--space-lg); font-size: var(--text-sm); box-shadow: var(--shadow-lift); opacity: 0; pointer-events: none; transition: opacity var(--dur-short) var(--ease-out); }
 .toast.on { opacity: 1; }
 
+@media (min-width: 60.01rem) and (max-width: 84rem) {
+  .row { grid-template-columns: 24px 3.9rem minmax(0, 1fr); row-gap: var(--space-xs); }
+  .rowacts { grid-column: 2 / -1; justify-content: flex-end; }
+}
 @media (max-width: 60rem) {
   :root { --bar-h: 60px; }
   .app { grid-template-columns: minmax(0, 1fr); padding: var(--space-md); gap: var(--space-md); }
@@ -254,7 +255,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 const HOME = { name: 'Casa', lat: 25.0475, lon: 121.5410 };
 const B = { lat0: 25.005, lat1: 25.105, lon0: 121.49, lon1: 121.585, W: 800, H: 929 };
 const SUNSET = 17 * 60 + 5;
-const KEY = 'tpe-plan-v8';
+const KEY = 'tpe-plan-v9';
 
 const PLACES = [
   ['bafang', 'Ba Fang Yun Ji (Liaoning St)', 25.0489, 121.5423, 30, null, '20:30'],
@@ -304,7 +305,7 @@ const initial = () => ({ view: 0, days: [
   { start: '20:00', stops: [mk('bafang', 30), mk('shida', 90)] },
   { start: '16:20', stops: [mk('cailetin', 60), mk('zhongshan', 75), mk('raohe', 120)] },
   { start: '09:30', stops: [mk('botanico', 60), mk('cks', 75), mk('hangzhou', 60), mk('longshan', 90), mk('dihua', 70), mk('wharf', 50), mk('ximending', 90), mk('laoshandong', 60)] },
-  { start: '09:00', stops: [mk('daan', 75), mk('yongkang', 60), mk('amin', 45), mk('sysmemorial', 45), mk('songshan', 45), mk('t101', 70), mk('sisinan', 25), mk('xiangshan', 105), mk('linjiang', 90)] }
+  { start: '09:00', stops: [mk('daan', 75), mk('yongkang', 60), mk('amin', 45), mk('sysmemorial', 45), mk('t101', 70), mk('sisinan', 25), mk('xiangshan', 105), mk('xinyi', 60), mk('linjiang', 90)] }
 ] });
 
 let state, history = [], selected = null, marking = false, ghost = null, dragUid = null;
